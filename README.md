@@ -6,6 +6,11 @@ Adds Backlink component to your blog posts and docs resources.
 
 Inspired by [anaclumos](https://github.com/anaclumos)'s [solution](https://github.com/facebook/docusaurus/discussions/8217).
 
+## Demo
+
+- 🖼️ [My personal blog](https://blog.amd-nick.me) + [My info resources](https://blog.amd-nick.me/docs)
+- Send your resources to me if you make some changes and I'll add them to this list
+
 ## How to use
 
 todo
