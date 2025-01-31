@@ -1,0 +1,25 @@
+{
+  "name": "docusaurus-plugin-backlinks",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AMD-NICK/docusaurus-plugin-backlinks.git"
+  },
+  "keywords": [
+    "docusaurus",
+    "plugin",
+    "backlinks",
+    "component"
+  ],
+  "author": "_AMD_ (https://blog.amd-nick.me)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks/issues"
+  },
+  "homepage": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks#readme",
+  "description": ""
+}
