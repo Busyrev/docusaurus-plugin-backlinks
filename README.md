@@ -13,7 +13,38 @@ Inspired by [anaclumos](https://github.com/anaclumos)'s [solution](https://githu
 
 ## How to use
 
-todo
+1. Install the plugin
+
+```shell
+npm install docusaurus-plugin-backlinks
+```
+
+2. Add the plugin to your docusaurus.config.js:
+
+```js
+module.exports = {
+  plugins: [
+    'docusaurus-plugin-backlinks',
+  ],
+}
+```
+
+3. Add the component to your page:
+
+```jsx
+import Backlink from "docusaurus-plugin-backlinks/src/components/Backlink";
+// ...
+<Backlink documentPath="/docs/my-page" />
+```
+
+![explanation demo](https://file.def.pm/rt2667uy.png)
+
+4. Build the site and enjoy your backlinks
+
+```shell
+# do not use yarn run dev, it will not work (works only after build)
+yarn run build && yarn run serve
+```
 
 ## How it works
 
@@ -30,6 +61,7 @@ Read my /docs resource that I dedicated to notes about developing this plugin
 
 ## TODO
 
+- [ ] Improve component import method. I'm a JS newbie and couldn't figure out how to make JS and TS work together (getting "module not found" when using `export {Backlink} from './components/Backlink'`)
 - [ ] Use `./backlinks.json` instead of `/backlinks.json` (generate file for each route separately)
 - [ ] Maybe even generate .ts or .js files for each route instead of json (microoptimization?)
 - [ ] Use titles instead of slugs in baklinks cards to made them more readable

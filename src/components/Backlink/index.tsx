@@ -40,7 +40,7 @@ const Backlink: React.FC<Props> = ({ documentPath }) => {
 			<h2 className={styles.backlinkTableH2}>
 				{translate({
 					id: 'backlink.title',
-					message: 'Это страница упоминается в:',
+					message: 'Эта страница упоминается в:',
 					description: 'Заголовок блока обратных ссылок',
 				})}
 			</h2>
