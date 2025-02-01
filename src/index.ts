@@ -6,20 +6,20 @@ module.exports = function() {
 	return {
 		name: 'docusaurus-plugin-backlinks',
 
-		async postBuild({plugins, outDir}) {
-			const allContent = await getBlogAndDocsContent(plugins) // [post1, post2, ..., doc1, doc2, ...]
+		async postBuild({plugins, outDir}: {plugins: any[], outDir: string}) {
+			const allContent = await getBlogAndDocsContent(plugins)
 			const backlinksMap = await getBacklinksMap(allContent)
 			await saveToFile(backlinksMap, path.join(outDir, 'backlinks.json'))
 		}
 	};
 };
 
-async function getBlogAndDocsContent(plugins) {
+async function getBlogAndDocsContent(plugins: any[]) {
 	const blogPlugin = plugins.find(plugin => plugin.name === 'docusaurus-plugin-content-blog')
 	const docsPlugin = plugins.find(plugin => plugin.name === 'docusaurus-plugin-content-docs')
 
 	const blogPosts = blogPlugin?.content?.blogPosts || []
-	const docItems  = docsPlugin?.content?.loadedVersions[0]?.docs || []
+	const docItems = docsPlugin?.content?.loadedVersions[0]?.docs || []
 
 	return [
 		...blogPosts.map(post => ({
@@ -37,10 +37,8 @@ async function getBlogAndDocsContent(plugins) {
 	]
 }
 
-// I found only this solution: https://github.com/facebook/docusaurus/blob/78f44d0ae70fb98a63681b469977e8f074d339da/packages/docusaurus-utils/src/markdownLinks.ts#L50-L79
-// explanation: https://github.com/facebook/docusaurus/blob/78f44d0ae70fb98a63681b469977e8f074d339da/packages/docusaurus-utils/src/__tests__/markdownLinks.test.ts#L8
-function getMarkdownLinkResolver(pages_with_metadata) {
-	function createResolverContext(file_permalink_dict) {
+function getMarkdownLinkResolver(pages_with_metadata: any[]) {
+	function createResolverContext(file_permalink_dict: {[key: string]: string}) {
 		return {
 			siteDir: ".",
 			contentPaths: {
@@ -51,8 +49,8 @@ function getMarkdownLinkResolver(pages_with_metadata) {
 		}
 	}
 
-	function createSourceToPermalinkDict(pages_with_metadata) {
-		const dict = {}
+	function createSourceToPermalinkDict(pages_with_metadata: any[]) {
+		const dict: {[key: string]: string} = {}
 		for (const {metadata} of pages_with_metadata) {
 			dict[metadata.source] = metadata.permalink
 		}
@@ -62,26 +60,26 @@ function getMarkdownLinkResolver(pages_with_metadata) {
 	const sourceToPermalinkDict = createSourceToPermalinkDict(pages_with_metadata)
 	const resolverContext = createResolverContext(sourceToPermalinkDict)
 	const registeredRoutes = new Set(Object.values(sourceToPermalinkDict))
-	return (url, sourceFilePath) => {
+	return (url: string, sourceFilePath: string) => {
 		resolverContext.sourceFilePath = aliasedSitePathToRelativePath(sourceFilePath)
 		return resolveMarkdownLinkPathname(url, resolverContext) ||
 			(registeredRoutes.has(url) ? url : null)
 	}
 }
 
-// Do not report this routes as unresolved
 const ignoreRoutes = new Set(['/about', 'about'])
-function isIgnoredUrl(url) {
+
+function isIgnoredUrl(url: string) {
 	return url.startsWith('http') || url.startsWith('/tags/') ||
 		ignoreRoutes.has(url) || url === '#' || url === '/'
 }
 
-async function getBacklinksMap(pages_with_metadata) {
+async function getBacklinksMap(pages_with_metadata: any[]) {
 	const resolveMarkdownLink = getMarkdownLinkResolver(pages_with_metadata)
 
 	const backlinksMap = {
-		links: {},
-		descriptions: {},
+		links: {} as {[key: string]: Set<string>},
+		descriptions: {} as {[key: string]: string},
 	}
 
 	for (const {content, metadata} of pages_with_metadata) {
@@ -90,7 +88,6 @@ async function getBacklinksMap(pages_with_metadata) {
 			throw new Error("Content is undefined")
 		}
 
-		// may be useful to know: https://github.com/facebook/docusaurus/pull/10168/files (parsing using remark and some tests)
 		const links = content.match(/(?<!!)\[([^\]]*)\]\(([^)]+)\)/g) || []
 
 		for (const linkMarkup of links) {
@@ -112,8 +109,7 @@ async function getBacklinksMap(pages_with_metadata) {
 	return backlinksMap
 }
 
-// Read as: resolvedUrl is a blog/docs page that $permalink links to with $description
-function addBacklink(backlinksMap, resolvedUrl, permalink, description) {
+function addBacklink(backlinksMap: any, resolvedUrl: string, permalink: string, description?: string) {
 	if (!backlinksMap.descriptions[permalink]) {
 		backlinksMap.descriptions[permalink] = description || ''
 	}
@@ -124,7 +120,7 @@ function addBacklink(backlinksMap, resolvedUrl, permalink, description) {
 	backlinksMap.links[resolvedUrl].add(permalink)
 }
 
-async function saveToFile(data, filePath) {
+async function saveToFile(data: any, filePath: string) {
 	try {
 		await fs.outputFile(filePath, JSON.stringify(data, null, 2))
 	} catch (err) {
@@ -132,4 +128,3 @@ async function saveToFile(data, filePath) {
 		throw err
 	}
 }
-

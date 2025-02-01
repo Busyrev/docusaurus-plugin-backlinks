@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"esModuleInterop": true,
+		"jsx": "preserve",
+		"target": "ES2022",
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"outDir": "./dist",
+		// "baseUrl": ".",
+		// "skipLibCheck": true
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
+}

@@ -1,32 +1,33 @@
 {
-  "name": "docusaurus-plugin-backlinks",
-  "version": "1.0.1",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AMD-NICK/docusaurus-plugin-backlinks.git"
-  },
-  "keywords": [
-    "docusaurus",
-    "plugin",
-    "backlinks",
-    "component"
-  ],
-  "author": "_AMD_ (https://blog.amd-nick.me)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks/issues"
-  },
-  "homepage": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks#readme",
-  "description": "",
-  "peerDependencies": {
-    "@docusaurus/utils": "^3.7.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.13.0",
-    "typescript": "^5.7.3"
-  }
+	"name": "docusaurus-plugin-backlinks",
+	"version": "1.0.1",
+	"main": "lib/index.js",
+	"scripts": {
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AMD-NICK/docusaurus-plugin-backlinks.git"
+	},
+	"keywords": [
+		"docusaurus",
+		"plugin",
+		"backlinks",
+		"component"
+	],
+	"author": "_AMD_ (https://blog.amd-nick.me)",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks/issues"
+	},
+	"homepage": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks#readme",
+	"description": "",
+	"devDependencies": {
+		"@types/node": "^22.13.0",
+		"typescript": "^5.7.3"
+	},
+	"dependencies": {
+		"@docusaurus/utils": "^3.7.0"
+	}
 }
