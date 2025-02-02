@@ -2,9 +2,14 @@
 	"name": "docusaurus-plugin-backlinks",
 	"version": "1.0.1",
 	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"src"
+	],
 	"scripts": {
-		"build": "tsc",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "tsc --build",
+		"build:watch": "tsc --build --watch"
 	},
 	"repository": {
 		"type": "git",
@@ -24,10 +29,21 @@
 	"homepage": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks#readme",
 	"description": "",
 	"devDependencies": {
+		"@docusaurus/module-type-aliases": "^3.7.0",
+		"@docusaurus/tsconfig": "^3.7.0",
+		"@docusaurus/types": "^3.7.0",
+		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^22.13.0",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
 		"typescript": "^5.7.3"
 	},
 	"dependencies": {
-		"@docusaurus/utils": "^3.7.0"
+		"@docusaurus/utils": "^3.0.0"
+	},
+	"peerDependencies": {
+		"@docusaurus/core": "^3.0.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
 	}
 }

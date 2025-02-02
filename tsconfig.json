@@ -1,15 +1,49 @@
 {
+	/////// "include": ["src"],
+	/////// "exclude": ["node_modules", "dist"],
+
 	"compilerOptions": {
-		"allowJs": true,
-		"esModuleInterop": true,
-		"jsx": "preserve",
-		"target": "ES2022",
+		"module": "ESNext",
+		"target": "ESNext",
+		"importHelpers": true,
+		"lib": ["DOM", "ESNext"],
+
+		// output .d.ts declaration files for consumers
+		"declaration": true,
+		// "sourceMap": true,
+
+		// match output dir to input dir. e.g. dist/index instead of dist/src/index
+		"rootDir": "./src",
+
+		// stricter type-checking for stronger correctness. Recommended by TS
+		"strict": true,
+
+		// use Node's module resolution algorithm, instead of the legacy TS one
 		"moduleResolution": "node",
-		"module": "commonjs",
+
+		// transpile JSX to React.createElement
+		"jsx": "react",
+
+		// interop between ESM and CJS modules. Recommended by TS
+		"esModuleInterop": true,
+
+		// significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+		"skipLibCheck": true,
+
+		// error out if import and file system have a casing mismatch. Recommended by TS
+		"forceConsistentCasingInFileNames": true,
+
+		// "allowJs": true,
 		"outDir": "./dist",
 		// "baseUrl": ".",
-		// "skipLibCheck": true
+
+		// Cannot find module '@docusaurus/Link'
+		"types": ["react", "@types/react", "@docusaurus/module-type-aliases"],
 	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "dist"]
+
+	// "extends": "@docusaurus/tsconfig",
+	// "compilerOptions": {
+	// 	"baseUrl": "."
+	// }
 }
+

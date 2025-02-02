@@ -2,7 +2,10 @@ import {aliasedSitePathToRelativePath, resolveMarkdownLinkPathname} from '@docus
 import fs from 'fs-extra';
 import path from 'path';
 
-module.exports = function() {
+import BacklinkComponent from './components/Backlink';
+export const Backlink = BacklinkComponent;
+
+const plugin = function() {
 	return {
 		name: 'docusaurus-plugin-backlinks',
 
@@ -14,7 +17,24 @@ module.exports = function() {
 	};
 };
 
-async function getBlogAndDocsContent(plugins: any[]) {
+export default plugin;
+
+interface BlogPost {
+	content: string;
+	metadata: {
+		source: string;
+		permalink: string;
+		description?: string;
+	};
+}
+
+interface DocItem {
+	source: string;
+	permalink: string;
+	description?: string;
+}
+
+async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
 	const blogPlugin = plugins.find(plugin => plugin.name === 'docusaurus-plugin-content-blog')
 	const docsPlugin = plugins.find(plugin => plugin.name === 'docusaurus-plugin-content-docs')
 
@@ -22,11 +42,11 @@ async function getBlogAndDocsContent(plugins: any[]) {
 	const docItems = docsPlugin?.content?.loadedVersions[0]?.docs || []
 
 	return [
-		...blogPosts.map(post => ({
+		...blogPosts.map((post: any) => ({
 			content: post.content,
 			metadata: post.metadata
 		})),
-		...docItems.map(doc => ({
+		...docItems.map((doc: DocItem) => ({
 			content: fs.readFileSync(aliasedSitePathToRelativePath(doc.source), 'utf8'),
 			metadata: {
 				source: doc.source,
@@ -37,8 +57,18 @@ async function getBlogAndDocsContent(plugins: any[]) {
 	]
 }
 
+interface ResolverContext {
+	siteDir: string;
+	contentPaths: {
+		contentPath: string;
+		contentPathLocalized: string;
+	};
+	sourceToPermalink: Map<string, string>;
+	sourceFilePath: string;
+}
+
 function getMarkdownLinkResolver(pages_with_metadata: any[]) {
-	function createResolverContext(file_permalink_dict: {[key: string]: string}) {
+	function createResolverContext(file_permalink_dict: {[key: string]: string}): ResolverContext {
 		return {
 			siteDir: ".",
 			contentPaths: {
@@ -46,6 +76,7 @@ function getMarkdownLinkResolver(pages_with_metadata: any[]) {
 				contentPathLocalized: 'docs',
 			},
 			sourceToPermalink: new Map(Object.entries(file_permalink_dict)),
+			sourceFilePath: "override me",
 		}
 	}
 
@@ -74,12 +105,17 @@ function isIgnoredUrl(url: string) {
 		ignoreRoutes.has(url) || url === '#' || url === '/'
 }
 
-async function getBacklinksMap(pages_with_metadata: any[]) {
+interface BacklinksMap {
+	links: { [key: string]: string[] };
+	descriptions: { [key: string]: string };
+}
+
+async function getBacklinksMap(pages_with_metadata: any[]): Promise<BacklinksMap> {
 	const resolveMarkdownLink = getMarkdownLinkResolver(pages_with_metadata)
 
 	const backlinksMap = {
-		links: {} as {[key: string]: Set<string>},
-		descriptions: {} as {[key: string]: string},
+		links: {} as { [key: string]: Set<string> },
+		descriptions: {} as { [key: string]: string },
 	}
 
 	for (const {content, metadata} of pages_with_metadata) {
@@ -104,9 +140,14 @@ async function getBacklinksMap(pages_with_metadata: any[]) {
 	}
 
 	const links = backlinksMap.links
-	for (const key in links) { links[key] = Array.from(links[key]) }
+	const result: BacklinksMap = {
+		links: Object.fromEntries(
+			Object.entries(links).map(([k, v]) => [k, Array.from(v)])
+		),
+		descriptions: backlinksMap.descriptions
+	}
 
-	return backlinksMap
+	return result
 }
 
 function addBacklink(backlinksMap: any, resolvedUrl: string, permalink: string, description?: string) {
