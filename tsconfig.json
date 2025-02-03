@@ -1,6 +1,7 @@
 {
-	/////// "include": ["src"],
-	/////// "exclude": ["node_modules", "dist"],
+	// "extends": "@docusaurus/tsconfig",
+	// "include": ["src"],
+	// "exclude": ["node_modules", "dist"],
 
 	"compilerOptions": {
 		"module": "ESNext",
@@ -13,7 +14,11 @@
 		// "sourceMap": true,
 
 		// match output dir to input dir. e.g. dist/index instead of dist/src/index
-		"rootDir": "./src",
+		// "rootDir": "./src",
+		"outDir": "./dist",
+		// "baseUrl": ".",
+
+		// "allowJs": true,
 
 		// stricter type-checking for stronger correctness. Recommended by TS
 		"strict": true,
@@ -33,17 +38,11 @@
 		// error out if import and file system have a casing mismatch. Recommended by TS
 		"forceConsistentCasingInFileNames": true,
 
-		// "allowJs": true,
-		"outDir": "./dist",
-		// "baseUrl": ".",
-
 		// Cannot find module '@docusaurus/Link'
 		"types": ["react", "@types/react", "@docusaurus/module-type-aliases"],
-	},
 
-	// "extends": "@docusaurus/tsconfig",
-	// "compilerOptions": {
-	// 	"baseUrl": "."
-	// }
+		// chatgpt: чтобы избежать проблем с import fs from 'fs-extra'.
+		"allowSyntheticDefaultImports": true
+	},
 }
 

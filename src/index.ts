@@ -2,9 +2,6 @@ import {aliasedSitePathToRelativePath, resolveMarkdownLinkPathname} from '@docus
 import fs from 'fs-extra';
 import path from 'path';
 
-import BacklinkComponent from './components/Backlink';
-export const Backlink = BacklinkComponent;
-
 const plugin = function() {
 	return {
 		name: 'docusaurus-plugin-backlinks',

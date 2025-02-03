@@ -32,7 +32,7 @@ module.exports = {
 3. Add the component to your page:
 
 ```jsx
-import { Backlink } from "docusaurus-plugin-backlinks";
+import { Backlink } from "docusaurus-plugin-backlinks/components";
 // ...
 <Backlink documentPath="/docs/my-page" />
 ```
