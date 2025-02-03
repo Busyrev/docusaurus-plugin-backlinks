@@ -1,15 +1,36 @@
 {
 	"name": "docusaurus-plugin-backlinks",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
 	"files": [
-		"dist",
-		"src"
+		"dist"
 	],
+	"exports": {
+		".": "./dist/index.js",
+		"./components": "./dist/components/index.js"
+	},
 	"scripts": {
 		"build": "tsc --build",
 		"build:watch": "tsc --build --watch"
+	},
+	"devDependencies": {
+		"@docusaurus/module-type-aliases": "^3.7.0",
+		"@docusaurus/tsconfig": "^3.7.0",
+		"@docusaurus/types": "^3.7.0",
+		"@types/fs-extra": "^11.0.4",
+		"@types/node": "^22.13.0",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
+		"typescript": "^5.7.3"
+	},
+	"dependencies": {
+		"@docusaurus/utils": "^3.0.0",
+		"fs-extra": "^11.3.0"
+	},
+	"peerDependencies": {
+		"@docusaurus/core": "^3.0.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
 	},
 	"repository": {
 		"type": "git",
@@ -27,23 +48,5 @@
 		"url": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks/issues"
 	},
 	"homepage": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks#readme",
-	"description": "",
-	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^3.7.0",
-		"@docusaurus/tsconfig": "^3.7.0",
-		"@docusaurus/types": "^3.7.0",
-		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^22.13.0",
-		"@types/react": "^19.0.8",
-		"@types/react-dom": "^19.0.3",
-		"typescript": "^5.7.3"
-	},
-	"dependencies": {
-		"@docusaurus/utils": "^3.0.0"
-	},
-	"peerDependencies": {
-		"@docusaurus/core": "^3.0.0",
-		"react": "^18.0.0",
-		"react-dom": "^18.0.0"
-	}
+	"description": ""
 }
