@@ -71,6 +71,33 @@ Read my /docs resource that I dedicated to notes about developing this plugin
 - [ ] If Docusaurus adds routing API, we can avoid storing titles and excerpts in JSON files
 - [ ] Also, it would be nice to wait for an API to get a list of entities in publications (like in Telegram API). Then we won't need hacky parsers and extra readings from the disk
 
+## Personal dev notes
+
+You can ignore it.
+
+### Start developing "from scratch"
+
+```shell
+git clone git@github.com:AMD-NICK/blog.amd-nick.me.git
+git clone git@github.com:AMD-NICK/docusaurus-plugin-backlinks.git
+cursor blog.amd-nick.me docusaurus-plugin-backlinks
+cd blog.amd-nick.me && yarn install && cd ..
+cd docusaurus-plugin-backlinks && yarn install && yarn link && yarn run build:watch && ..
+cd blog.amd-nick.me && yarn link "docusaurus-plugin-backlinks"
+yarn run dev
+```
+
+### After changes
+
+```shell
+# upload changes to npmjs
+cd docusaurus-plugin-backlinks
+yarn publish --patch (--minor) (--major) (--new-version [version])
+
+# update version in blog's package.json
+cd ../blog.amd-nick.me && yarn add docusaurus-plugin-backlinks
+```
+
 <!--
 related resources:
 
