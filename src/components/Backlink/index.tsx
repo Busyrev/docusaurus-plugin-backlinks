@@ -44,46 +44,39 @@ const Backlink: React.FC<Props> = ({ documentPath }) => {
 
 	const backlinkPaths = backlinks.links[documentPath] || []
 
+	if (backlinkPaths.length === 0) {
+		return null
+	}
+
 	return (
 		<div style={styles.backlinkTable}>
 			<h2 style={styles.backlinkTableH2}>
 				{translate({
 					id: 'backlink.title',
-					message: 'Эта страница упоминается в:',
-					description: 'Заголовок блока обратных ссылок',
+					message: 'This page is mentioned in:',
+					description: 'Title of the backlinks block',
 				})}
 			</h2>
 			<div style={styles.backlinkGridView}>
-				{backlinkPaths.length > 0 ? (
-					backlinkPaths
-						.map((link) => (
-							<Link to={link} key={link} style={styles.backlinkItemLink}>
-								<div
-									onMouseEnter={() => setHoveredLink(link)}
-									onMouseLeave={() => setHoveredLink(null)}
-									style={{
-										...styles.backlinkItem,
-										...(hoveredLink === link ? styles.backlinkItemHovered : {})
-									}}
-								>
-									<h3 style={styles.backlinkTitle}>
-										{link.split('/').filter(Boolean).pop()}
-									</h3>
-									<pre style={styles.backlinkItemText}>
-										{backlinks.descriptions[link] || ''}
-									</pre>
-								</div>
-							</Link>
-						))
-				) : (
-					<p style={styles.noBacklink}>
-						{translate({
-							id: 'backlink.noBacklink',
-							message: 'Другие публикации не ссылаются на эту. Пока что',
-							description: 'Сообщение, отображаемое при отсутствии обратных ссылок',
-						})}
-					</p>
-				)}
+				{backlinkPaths.map((link) => (
+					<Link to={link} key={link} style={styles.backlinkItemLink}>
+						<div
+							onMouseEnter={() => setHoveredLink(link)}
+							onMouseLeave={() => setHoveredLink(null)}
+							style={{
+								...styles.backlinkItem,
+								...(hoveredLink === link ? styles.backlinkItemHovered : {})
+							}}
+						>
+							<h3 style={styles.backlinkTitle}>
+								{link.split('/').filter(Boolean).pop()}
+							</h3>
+							<pre style={styles.backlinkItemText}>
+								{backlinks.descriptions[link] || ''}
+							</pre>
+						</div>
+					</Link>
+				))}
 			</div>
 		</div>
 	)
