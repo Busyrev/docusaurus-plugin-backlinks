@@ -38,8 +38,8 @@ async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
 	const blogPosts = blogPlugin?.content?.blogPosts || []
 	const docItems = docsPlugin?.content?.loadedVersions[0]?.docs || []
 
-	blogPosts.map((post: any) => {console.debug('post = ' + post)})
-	docItems.map((doc: any) => {console.debug( 'doc.id = ' + doc.id + ' doc.source = ' + doc.source + ' doc.title '  + doc.title + ' doc.description '  + doc.description + ' doc.sidebar_label '  + doc.sidebar_label )})
+	//blogPosts.map((post: any) => {console.debug('post = ' + post)})
+	//docItems.map((doc: any) => {console.debug( 'doc.id = ' + doc.id + ' doc.source = ' + doc.source + ' doc.title '  + doc.title + ' doc.description '  + doc.description + ' doc.sidebar_label '  + doc.sidebar_label )})
 
 	return [
 		...blogPosts.map((post: any) => ({
@@ -51,7 +51,7 @@ async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
 			metadata: {
 				source: doc.source,
 				permalink: doc.permalink,
-				description: doc.description
+				description: doc.title
 			}
 		}))
 	]
@@ -152,7 +152,7 @@ async function getBacklinksMap(pages_with_metadata: any[]): Promise<BacklinksMap
 
 function addBacklink(backlinksMap: any, resolvedUrl: string, permalink: string, description?: string) {
 
-	console.debug('resolvedUrl =' + resolvedUrl + ' permalink = ' + permalink + ' description = ' + description)
+	//console.debug('resolvedUrl =' + resolvedUrl + ' permalink = ' + permalink + ' description = ' + description)
 
 	if (!backlinksMap.descriptions[permalink]) {
 		backlinksMap.descriptions[permalink] = description || ''

@@ -38,7 +38,7 @@ const Backlink: React.FC<Props> = ({ documentPath }) => {
 
 	return (
 		<ul>
-			{backlinkPaths.map(link =>  <li><a href={link}>{link.split('/').filter(Boolean).pop()}</a></li>)}
+			{backlinkPaths.map(link =>  <li><a href={link}>{backlinks.descriptions[link] || ''}</a></li>)}
 		</ul>
 	)
 }
