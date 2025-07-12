@@ -1,6 +1,6 @@
 {
-	"name": "docusaurus-plugin-backlinks",
-	"version": "1.0.7",
+	"name": "@koroligor/docusaurus-plugin-backlinks",
+	"version": "1.0.0",
 	"main": "dist/index.js",
 	"files": [
 		"dist"
@@ -34,7 +34,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/AMD-NICK/docusaurus-plugin-backlinks.git"
+		"url": "git+https://github.com/KorolIgr/docusaurus-plugin-backlinks.git"
 	},
 	"keywords": [
 		"docusaurus",
@@ -42,11 +42,11 @@
 		"backlinks",
 		"component"
 	],
-	"author": "_AMD_ (https://blog.amd-nick.me)",
+	"author": "Korol Igor",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks/issues"
+		"url": "https://github.com/KorolIgr/docusaurus-plugin-backlinks/issues"
 	},
-	"homepage": "https://github.com/AMD-NICK/docusaurus-plugin-backlinks#readme",
+	"homepage": "https://github.com/KorolIgr/docusaurus-plugin-backlinks#readme",
 	"description": ""
 }
