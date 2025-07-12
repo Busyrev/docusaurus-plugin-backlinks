@@ -51,7 +51,7 @@ async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
 			metadata: {
 				source: doc.source,
 				permalink: doc.permalink,
-				description: doc.title
+				title: doc.description
 			}
 		}))
 	]
