@@ -148,9 +148,9 @@ async function getBacklinksMap(pages_with_metadata: any[]): Promise<BacklinksMap
 }
 
 function addBacklink(backlinksMap: any, resolvedUrl: string, permalink: string, description?: string) {
-	if (!backlinksMap.descriptions[permalink]) {
+	//if (!backlinksMap.descriptions[permalink]) {
 		backlinksMap.descriptions[permalink] = description || ''
-	}
+	//}
 
 	if (!backlinksMap.links[resolvedUrl]) {
 		backlinksMap.links[resolvedUrl] = new Set()
