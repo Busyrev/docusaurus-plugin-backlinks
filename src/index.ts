@@ -39,7 +39,7 @@ async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
 	const docItems = docsPlugin?.content?.loadedVersions[0]?.docs || []
 
 	blogPosts.map((post: any) => {console.debug('post = ' + post)})
-	docItems.map((doc: any) => {console.debug( 'doc.id = ' + doc.id + ' doc.source = ' + doc.source + ' doc.title '  + doc.title + ' doc.description '  + doc.description)})
+	docItems.map((doc: any) => {console.debug( 'doc.id = ' + doc.id + ' doc.source = ' + doc.source + ' doc.title '  + doc.title + ' doc.description '  + doc.description + ' doc.sidebar_label '  + doc.sidebar_label )})
 
 	return [
 		...blogPosts.map((post: any) => ({
