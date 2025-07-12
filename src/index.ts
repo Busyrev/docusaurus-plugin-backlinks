@@ -149,7 +149,7 @@ async function getBacklinksMap(pages_with_metadata: any[]): Promise<BacklinksMap
 
 function addBacklink(backlinksMap: any, resolvedUrl: string, permalink: string, description?: string) {
 
-	console.debug("resolvedUrl = ${resolvedUrl} permalink =  ${permalink} description =  ${description}")
+	console.debug('resolvedUrl =' + resolvedUrl + ' permalink = ' + permalink + ' description = ' + description)
 
 	if (!backlinksMap.descriptions[permalink]) {
 		backlinksMap.descriptions[permalink] = description || ''
