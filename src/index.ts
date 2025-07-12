@@ -28,7 +28,7 @@ interface BlogPost {
 interface DocItem {
 	source: string;
 	permalink: string;
-	description?: string;
+	title?: string;
 }
 
 async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
@@ -51,7 +51,7 @@ async function getBlogAndDocsContent(plugins: any[]): Promise<BlogPost[]> {
 			metadata: {
 				source: doc.source,
 				permalink: doc.permalink,
-				title: doc.description
+				description: doc.title
 			}
 		}))
 	]
