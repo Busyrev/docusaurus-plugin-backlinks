@@ -1,5 +1,5 @@
 {
-	"name": "@koroligor/docusaurus-plugin-backlinks",
+	"name": "@busyrev/docusaurus-plugin-backlinks",
 	"version": "1.0.0",
 	"main": "dist/index.js",
 	"files": [
@@ -34,7 +34,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/KorolIgr/docusaurus-plugin-backlinks.git"
+		"url": "git+https://github.com/busyrev/docusaurus-plugin-backlinks.git"
 	},
 	"keywords": [
 		"docusaurus",
@@ -45,9 +45,9 @@
 	"author": "Korol Igor",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/KorolIgr/docusaurus-plugin-backlinks/issues"
+		"url": "https://github.com/busyrev/docusaurus-plugin-backlinks/issues"
 	},
-	"homepage": "https://github.com/KorolIgr/docusaurus-plugin-backlinks#readme",
+	"homepage": "https://github.com/busyrev/docusaurus-plugin-backlinks#readme",
 	"description": "",
 	"publishConfig": {
 		"access": "public"

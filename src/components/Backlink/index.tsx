@@ -19,7 +19,7 @@ const Backlink: React.FC<Props> = ({ documentPath }) => {
 	useEffect(() => {
 		const fetchBacklinks = async () => {
 			try {
-				const response = await fetch('/backlinks.json')
+				const response = await fetch('/blog/backlinks.json')
 				const data = await response.json()
 				setBacklinks(data)
 			} catch (error) {
